@@ -14,5 +14,28 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index', [
+        'name' => 'Hillary'
+    ]);
+});
+
+Route::get('/hello', function () {
+    return "Hello";
+});
+
+// add dynamic parts
+Route::get('/greet/{name}', function ($name) {
+    return 'Hello ' . $name . '!';
+});
+
+Route::get('/xxx', function () {
+    return 'hello';
+})->name('hello');
+
+Route::get('/hallo', function () {
+    return redirect()->route('hello');
+});
+
+Route::fallback(function () {
+    return 'Still got somwhee';
 });
